@@ -3,11 +3,12 @@ using System.Collections.Generic;
 namespace Ucu.Poo.Restaurant
 {
     /// <summary>
-    /// Representa un mozo en el restaurante, encargado de atender mesas.
+    /// Representa un mozo en el restaurante, encargado de atender mesas
+    /// y tomar órdenes para llevar.
     /// </summary>
     public class Waiter
     {
-        private List<Table>assignedTables = new List<Table>();
+        private List<Table> assignedTables = new List<Table>();
 
         public string Name { get; set; }
 
@@ -24,6 +25,11 @@ namespace Ucu.Poo.Restaurant
         public void TakeOrder(Table table, Dish dish)
         {
             table.AddToOrder(dish);
+        }
+
+        public void Delivery(Order order, Dish dish)
+        {
+            order.AddToOrder(dish);
         }
     }
 }

@@ -25,9 +25,19 @@ namespace Ucu.Poo.Restaurant
             Console.WriteLine(
                 $"La mesa {oneTable.Number} está ocupada: {oneTable.IsOccupied} " +
                 $"y la atiende: {waiter.Name}");
+            Console.WriteLine(
+                $"Total de la mesa {oneTable.Number}: ${oneTable.GetTotal():F2}");
             oneTable.Free();
             Console.WriteLine(
                 $"La mesa {oneTable.Number} está ocupada: {oneTable.IsOccupied}");
+            Order deliveryOrder = new Order();
+            deliveryOrder.ParaLlevar = true;
+            waiter.Delivery(deliveryOrder, burger);
+            waiter.Delivery(deliveryOrder, salad);
+            Console.WriteLine(
+                $"\nEs para llevar: {deliveryOrder.ParaLlevar}");
+            Console.WriteLine(
+                $"Total de la orden para llevar: ${deliveryOrder.GetTotal():F2}");
         }
     }
 }

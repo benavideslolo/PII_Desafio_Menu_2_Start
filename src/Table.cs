@@ -1,11 +1,13 @@
 namespace Ucu.Poo.Restaurant
 {
     /// <summary>
-    /// Representa una mesa en el restaurante.
+    /// Representa una mesa física en el restaurante.
+    /// SRP: solo tiene razones de cambio relacionadas con la mesa (ocupación,
+    /// número). La lógica de pedidos vive en Order.
     /// </summary>
     public class Table
     {
-        private Order order;
+        private Order order = new Order();
 
         public int Number { get; set; }
         public bool IsOccupied { get; set; }
@@ -33,7 +35,15 @@ namespace Ucu.Poo.Restaurant
 
         public bool HasOrders()
         {
-            return this.order.Count > 0;
+            return this.order.HasOrders();
+        }
+
+        /// <summary>
+        /// Delega el cálculo del total a Order (Expert).
+        /// </summary>
+        public double GetTotal()
+        {
+            return this.order.GetTotal();
         }
     }
 }
