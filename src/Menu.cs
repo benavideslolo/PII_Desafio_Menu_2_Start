@@ -10,17 +10,17 @@ namespace Ucu.Poo.Restaurant
     {
         private List<Dish> dishes = new List<Dish>();
 
-        public void AddDish(Dish dish)
+        public void AddDish(Dish dish) // Agrega plato al menu
         {
             this.dishes.Add(dish);
         }
 
-        public void RemoveDish(Dish dish)
+        public void RemoveDish(Dish dish) // Quita plato del menu
         {
             this.dishes.Remove(dish);
         }
 
-        public Dish GetDishByName(string name)
+        public Dish GetDishByName(string name) // Busca un plato por nombre en el menu, si no lo encuentra nos devuelvo null
         {
             foreach (Dish dish in this.dishes)
             {

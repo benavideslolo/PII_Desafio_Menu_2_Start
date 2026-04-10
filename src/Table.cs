@@ -2,46 +2,40 @@ namespace Ucu.Poo.Restaurant
 {
     /// <summary>
     /// Representa una mesa física en el restaurante.
-    /// SRP: solo tiene razones de cambio relacionadas con la mesa (ocupación,
-    /// número). La lógica de pedidos vive en Order.
     /// </summary>
     public class Table
     {
-        private Order order = new Order();
+        private Order order = new Order(); // Una orden por mesa
 
-        public int Number { get; set; }
-        public bool IsOccupied { get; set; }
+        public int Number { get; set; } // Un numero para identificar a cada mesa
+        public bool IsOccupied { get; set; } // Estado de la mesa (ocupada, descupada)
 
-        public Table(int number)
+        public Table(int number) // Asigna numero de mesa
         {
             this.Number = number;
         }
 
-        public void Ocupy()
+        public void Ocupy() // Mesa ocupada
         {
             this.IsOccupied = true;
         }
 
-        public void Free()
+        public void Free() // Mesa libre y vacía la orden
         {
             this.IsOccupied = false;
             this.order.Clear();
         }
 
-        public void AddToOrder(Dish dish)
+        public void AddToOrder(Dish dish) // Delega a order tras agregar un plato a la orden de la mesa
         {
             this.order.AddToOrder(dish);
         }
 
-        public bool HasOrders()
+        public bool HasOrders() // Si hay al menos un plato devuelve true
         {
             return this.order.HasOrders();
         }
-
-        /// <summary>
-        /// Delega el cálculo del total a Order (Expert).
-        /// </summary>
-        public double GetTotal()
+        public double GetTotal() // Devuelve el precio total de la orden
         {
             return this.order.GetTotal();
         }
